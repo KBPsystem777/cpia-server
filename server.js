@@ -17,7 +17,7 @@ app.use(express.json())
 const uri = process.env.ATLAS_URI
 
 // Establish connection to mongoose
-mongoose.connection(uri, {
+mongoose.connect(uri, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true
@@ -26,7 +26,7 @@ mongoose.connection(uri, {
 const connection = mongoose.connection
 
 connection.once('open', () => {
-	console.log(Date() + `Database connection established!`)
+	console.log(Date() + ` Database connection established!`)
 })
 
 
@@ -43,5 +43,5 @@ app.use('/products', productsRouter)
 app.use('/users', usersRouter)
 
 app.listen(port, () => {
-	console.log(Date() + `Server running on port: ${port}`)
+	console.log(Date() + ` Server running on port: ${port}`)
 })
