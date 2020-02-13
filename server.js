@@ -30,6 +30,12 @@ connection.once('open', () => {
 })
 
 
+// Display welcome page!
+
+app.get('/', (req, res) => {
+	res.sendFile(__dirname + '/index.html')
+})
+
 // Building Routes
 
 // Routes for products
