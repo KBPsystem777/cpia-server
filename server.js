@@ -1,53 +1,52 @@
-const express = require('express')
-const cors = require('cors')
-const mongoose = require('mongoose')
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
 
-require('dotenv').config()
+require("dotenv").config();
 
 // Pass express() to app
-const app = express()
+const app = express();
 
-// Declate port
-const port = process.env.PORT || 1964
+// Declare port
+const port = process.env.PORT || 1964;
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 // Pull the mongoose connection address
-const uri = process.env.ATLAS_URI
+const uri = process.env.ATLAS_URI;
 
 // Establish connection to mongoose
 mongoose.connect(uri, {
-	useNewUrlParser: true,
-	useCreateIndex: true,
-	useUnifiedTopology: true
-})
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+});
 
-const connection = mongoose.connection
+const connection = mongoose.connection;
 
-connection.once('open', () => {
-	console.log(Date() + ` Database connection established!`)
-})
-
+connection.once("open", () => {
+  console.log(Date() + ` Database connection established!`);
+});
 
 // Display welcome page!
 
-app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html')
-})
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
 
 // Building Routes
 
 // Routes for products
-const productsRouter = require('./routes/products')
+const productsRouter = require("./routes/products");
 
 // Routes for users
-const usersRouter = require('./routes/users')
+const usersRouter = require("./routes/users");
 
 // Build address routes
-app.use('/products', productsRouter)
-app.use('/users', usersRouter)
+app.use("/products", productsRouter);
+app.use("/users", usersRouter);
 
 app.listen(port, () => {
-	console.log(Date() + ` Server running on port: ${port}`)
-})
+  console.log(Date() + ` Server running on port: ${port}`);
+});
