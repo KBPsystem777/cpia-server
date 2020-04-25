@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // Pull the mongoose connection address
-const uri = process.env.ATLAS_URI;
+const uri = process.env.MONGODB_URI;
 
 // Establish connection to mongoose
 mongoose.connect(uri, {
