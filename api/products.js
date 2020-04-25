@@ -4,7 +4,7 @@ const MongoClient = require("mongodb");
 // Create Cached connection variabel
 let cachedDb = null;
 
-async function connectToDatebase(url) {
+async function connectToDatebase(uri) {
   if (cachedDb) {
     return cachedDb;
   }
