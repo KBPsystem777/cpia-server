@@ -12,14 +12,14 @@ router.route("/").get((req, res) => {
 router.route("/add").post((req, res) => {
   const productName = req.body.productName;
   const price = req.body.price;
-  const galenical = req.body.galenical;
+  const category = req.body.category;
   const quantity = Number(req.body.quantity);
   const expirationDate = Date.parse(req.body.expirationDate);
 
   const newProduct = new Product({
     productName,
     price,
-    galenical,
+    category,
     quantity,
     expirationDate,
   });
@@ -50,7 +50,7 @@ router.route("/update/:id").post((req, res) => {
     .then((product) => {
       product.productName = req.body.productName;
       product.price = req.body.price;
-      product.galenical = req.body.galenical;
+      product.category = req.body.category;
       product.quantity = Number(req.body.quantity);
       product.expirationDate = Date.parse(req.body.expirationDate);
 
