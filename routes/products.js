@@ -3,8 +3,10 @@ const router = require("express").Router();
 let Product = require("../models/productModel");
 
 router.route("/").get((req, res) => {
+  console.log(new Date() + ` Running GET products/`);
   Product.find()
     .then((products) => res.json(products))
+    .then(console.log(new Date() + " Products provided"))
     .catch((err) => res.json(400).json(`Error: ` + err));
 });
 
@@ -23,6 +25,7 @@ router.route("/add").post((req, res) => {
     quantity,
     expirationDate,
   });
+
   // Save new product
   newProduct
     .save()
